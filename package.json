@@ -4,6 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.tsx",
+  "homepage" : "https://dmstern.github.io/finance-analyzer",
   "dependencies": {
     "csvtojson": "2.0.10",
     "react": "16.8.4",
@@ -13,11 +14,14 @@
   "devDependencies": {
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
+    "gh-pages": "^2.1.1",
     "typescript": "3.3.3"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
