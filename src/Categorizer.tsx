@@ -36,11 +36,12 @@ export default class Categorizer extends React.Component<{}, State> {
   handleSubmit(event: FormEvent) {
     csv
       .default({
+        delimiter: this.state.delimiter,
         noheader: !this.state.hasHeadline
       })
       .fromString(this.state.csvInput)
-      .then(rawSpendings => {
-        const spendings = rawSpendings.map(spending => new Spending(spending));
+      .then(spendingRows => {
+        const spendings = spendingRows.map(spending => new Spending(spending));
         this.setState({ spendings });
         this.analayzeData();
       });
