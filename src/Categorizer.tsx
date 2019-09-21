@@ -134,71 +134,12 @@ export default class Categorizer extends React.Component<{}, State> {
       monthlyAvarage,
       monthlySpendings,
       months,
-      monthlySums,
+      monthlySums
     });
   }
 
   render = () => {
-    const tableRows: JSX.Element[] = [];
-
-    const tableHeadCells: JSX.Element[] = [];
-    for (const month of this.state.months) {
-      tableHeadCells.push(<th>{month}</th>);
-    }
-
-    const tableHeadRow = (
-      <tr>
-        <th>Category / Month</th>
-        {tableHeadCells}
-        <th>Avarage</th>
-      </tr>
-    );
-
-    tableRows.push(tableHeadRow);
-
     let sum: number = 0;
-    for (const [category, monthlySpendings] of Object.entries(
-      this.state.monthlySpendings
-    )) {
-      const monthCells: JSX.Element[] = [];
-
-      for (const month of this.state.months) {
-        monthCells.push(
-          <td className="amount" key={`${category}-${month}`}>
-            {monthlySpendings[month]
-              ? Math.round(monthlySpendings[month] * 100) / 100
-              : 0}{" "}
-            €
-          </td>
-        );
-      }
-
-      const avarage = this.state.monthlyAvarage[category];
-      sum += avarage;
-      const tr = (
-        <tr key={category}>
-          <th className="label">{Spending.categories[category].label}</th>
-          {monthCells}
-          <td className="amount">{Math.round(avarage * 100) / 100} €</td>
-        </tr>
-      );
-      tableRows.push(tr);
-    }
-    tableRows.push(
-      <tr key="sum">
-        <td className="label">
-          <strong>Gesamt</strong>
-        </td>
-        {Object.values(this.state.monthlySums).map((sum, index) => (
-          <td className="amount sum" key={index}>{Math.round(sum * 100) / 100} €</td>
-        ))}
-        <td
-          className="amount sum"
-        >
-          <strong>{Math.round(sum * 100) / 100} €</strong>
-        </td>
-      </tr>
-    );
 
     return (
       <div>
@@ -241,7 +182,65 @@ export default class Categorizer extends React.Component<{}, State> {
           <div className="result">
             <h3>Monatliche Ausgaben:</h3>
             <table>
-              <tbody>{tableRows}</tbody>
+
+              <thead>
+
+                <tr>
+                  <th>Category / Month</th>
+                  {this.state.months.map((month, index) => (
+                    <th key={index}>{month}</th>
+                  ))}
+                  <th>Avarage</th>
+                </tr>
+
+              </thead>
+
+              <tbody>
+
+                {Object.entries(this.state.monthlySpendings).map(
+                  ([category, monthlySpendings]) => {
+                    const avarage = this.state.monthlyAvarage[category];
+                    sum += avarage;
+
+                    return (
+                      <tr key={category}>
+                        <th className="label">
+                          {Spending.categories[category].label}
+                        </th>
+                        {this.state.months.map(month => (
+                          <td className="amount" key={`${category}-${month}`}>
+                            {monthlySpendings[month]
+                              ? Math.round(monthlySpendings[month] * 100) / 100
+                              : 0}{" "}
+                            €
+                          </td>
+                        ))}
+                        <td className="amount">
+                          {Math.round(avarage * 100) / 100} €
+                        </td>
+                      </tr>
+                    );
+                  }
+                )}
+
+                <tr key="sum">
+
+                  <td className="label">
+                    <strong>Gesamt</strong>
+                  </td>
+
+                  {Object.values(this.state.monthlySums).map((sum, index) => (
+                    <td className="amount sum" key={index}>
+                      {Math.round(sum * 100) / 100} €
+                    </td>
+                  ))}
+
+                  <td className="amount sum">
+                    <strong>{Math.round(sum * 100) / 100} €</strong>
+                  </td>
+
+                </tr>
+              </tbody>
             </table>
           </div>
         )}
