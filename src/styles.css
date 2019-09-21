@@ -25,6 +25,10 @@ td.sum {
   font-weight: bold;
 }
 
+td.avarage {
+  background: #eee;
+}
+
 td.label, th.label {
   text-align: left;
 }

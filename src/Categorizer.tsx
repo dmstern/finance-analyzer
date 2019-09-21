@@ -186,11 +186,11 @@ export default class Categorizer extends React.Component<{}, State> {
               <thead>
 
                 <tr>
-                  <th>Category / Month</th>
+                  <th className="label">Category / Month</th>
                   {this.state.months.map((month, index) => (
                     <th key={index}>{month}</th>
                   ))}
-                  <th>Avarage</th>
+                  <th className="avarage">Avarage</th>
                 </tr>
 
               </thead>
@@ -215,7 +215,7 @@ export default class Categorizer extends React.Component<{}, State> {
                             €
                           </td>
                         ))}
-                        <td className="amount">
+                        <td className="amount avarage">
                           {Math.round(avarage * 100) / 100} €
                         </td>
                       </tr>
@@ -235,7 +235,7 @@ export default class Categorizer extends React.Component<{}, State> {
                     </td>
                   ))}
 
-                  <td className="amount sum">
+                  <td className="amount sum avarage">
                     <strong>{Math.round(sum * 100) / 100} €</strong>
                   </td>
 
