@@ -13,10 +13,24 @@ form > span {
   margin-bottom: 1em;
 }
 
+table {
+  border-spacing: 0;
+}
+
 td.amount {
   text-align: right;
 }
 
-td.label {
+td.sum {
+  font-weight: bold;
+}
+
+td.label, th.label {
   text-align: left;
+}
+
+td, th {
+  padding: .5em;
+  border-bottom: 1px solid #333;
+  margin: 0;
 }
