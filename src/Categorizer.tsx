@@ -10,7 +10,7 @@ interface State {
   aggregated: {
     [key: string]: number;
   };
-  monthlyAvarage: {
+  monthlyAverage: {
     [key: string]: number;
   };
   monthlySpendings: {
@@ -39,7 +39,7 @@ export default class Categorizer extends React.Component<{}, State> {
       aggregated: {},
       csvInput: "",
       spendings: [],
-      monthlyAvarage: {},
+      monthlyAverage: {},
       monthlySpendings: {},
       monthlySums: {},
       months: [],
@@ -77,7 +77,7 @@ export default class Categorizer extends React.Component<{}, State> {
 
   analayzeData() {
     const aggregated = {};
-    const monthlyAvarage = {};
+    const monthlyAverage = {};
     const monthlySpendings = {};
     const months: string[] = [];
     const monthlySums = {};
@@ -115,7 +115,7 @@ export default class Categorizer extends React.Component<{}, State> {
     }
 
     for (const category of Object.keys(aggregated)) {
-      monthlyAvarage[category] = aggregated[category]
+      monthlyAverage[category] = aggregated[category]
         ? aggregated[category] / months.length
         : 0;
     }
@@ -123,7 +123,7 @@ export default class Categorizer extends React.Component<{}, State> {
     this.setState({
       isCalculated: true,
       aggregated,
-      monthlyAvarage,
+      monthlyAverage,
       monthlySpendings,
       months,
       monthlySums
@@ -182,7 +182,7 @@ export default class Categorizer extends React.Component<{}, State> {
                   {this.state.months.map((month, index) => (
                     <th key={index}>{month}</th>
                   ))}
-                  <th className="avarage">Avarage</th>
+                  <th className="average">Average</th>
                 </tr>
 
               </thead>
@@ -191,8 +191,8 @@ export default class Categorizer extends React.Component<{}, State> {
 
                 {Object.entries(this.state.monthlySpendings).map(
                   ([category, monthlySpendings]) => {
-                    const avarage = this.state.monthlyAvarage[category];
-                    sum += avarage;
+                    const average = this.state.monthlyAverage[category];
+                    sum += average;
 
                     return (
                       <tr key={category}>
@@ -207,8 +207,8 @@ export default class Categorizer extends React.Component<{}, State> {
                             €
                           </td>
                         ))}
-                        <td className="amount avarage">
-                          {Math.round(avarage * 100) / 100} €
+                        <td className="amount average">
+                          {Math.round(average * 100) / 100} €
                         </td>
                       </tr>
                     );
@@ -227,7 +227,7 @@ export default class Categorizer extends React.Component<{}, State> {
                     </td>
                   ))}
 
-                  <td className="amount sum avarage">
+                  <td className="amount sum average">
                     <strong>{Math.round(sum * 100) / 100} €</strong>
                   </td>
 
