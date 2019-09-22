@@ -131,8 +131,6 @@ export default class Categorizer extends React.Component<{}, State> {
   }
 
   render = () => {
-    let sum: number = 0;
-
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -174,9 +172,7 @@ export default class Categorizer extends React.Component<{}, State> {
           <div className="result">
             <h3>Monatliche Ausgaben:</h3>
             <table>
-
               <thead>
-
                 <tr>
                   <th className="label">Category / Month</th>
                   {this.state.months.map((month, index) => (
@@ -184,15 +180,12 @@ export default class Categorizer extends React.Component<{}, State> {
                   ))}
                   <th className="average">Average</th>
                 </tr>
-
               </thead>
 
               <tbody>
-
                 {Object.entries(this.state.monthlySpendings).map(
                   ([category, monthlySpendings]) => {
                     const average = this.state.monthlyAverage[category];
-                    sum += average;
 
                     return (
                       <tr key={category}>
@@ -203,7 +196,7 @@ export default class Categorizer extends React.Component<{}, State> {
                           <td className="amount" key={`${category}-${month}`}>
                             {monthlySpendings[month]
                               ? Math.round(monthlySpendings[month] * 100) / 100
-                              : 0}{" "}
+                              : 0}
                             €
                           </td>
                         ))}
@@ -216,7 +209,6 @@ export default class Categorizer extends React.Component<{}, State> {
                 )}
 
                 <tr key="sum">
-
                   <td className="label">
                     <strong>Gesamt</strong>
                   </td>
@@ -228,9 +220,15 @@ export default class Categorizer extends React.Component<{}, State> {
                   ))}
 
                   <td className="amount sum average">
-                    <strong>{Math.round(sum * 100) / 100} €</strong>
+                    <strong>
+                      {Math.round(
+                        Object.values(this.state.monthlyAverage).reduce(
+                          (a, b) => a + b
+                        ) * 100
+                      ) / 100}
+                      €
+                    </strong>
                   </td>
-
                 </tr>
               </tbody>
             </table>
