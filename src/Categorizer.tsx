@@ -130,6 +130,10 @@ export default class Categorizer extends React.Component<{}, State> {
     });
   }
 
+  amountify = (amount: number) => {
+    return `${Math.round(amount * 100) / 100} €`;
+  };
+
   render = () => {
     return (
       <div>
@@ -195,13 +199,12 @@ export default class Categorizer extends React.Component<{}, State> {
                         {this.state.months.map(month => (
                           <td className="amount" key={`${category}-${month}`}>
                             {monthlySpendings[month]
-                              ? Math.round(monthlySpendings[month] * 100) / 100
-                              : 0}
-                            €
+                              ? this.amountify(monthlySpendings[month])
+                              : `0 €`}
                           </td>
                         ))}
                         <td className="amount average">
-                          {Math.round(average * 100) / 100} €
+                          {this.amountify(average)}
                         </td>
                       </tr>
                     );
@@ -215,18 +218,17 @@ export default class Categorizer extends React.Component<{}, State> {
 
                   {Object.values(this.state.monthlySums).map((sum, index) => (
                     <td className="amount sum" key={index}>
-                      {Math.round(sum * 100) / 100} €
+                      {this.amountify(sum)}
                     </td>
                   ))}
 
                   <td className="amount sum average">
                     <strong>
-                      {Math.round(
+                      {this.amountify(
                         Object.values(this.state.monthlyAverage).reduce(
                           (a, b) => a + b
-                        ) * 100
-                      ) / 100}
-                      €
+                        )
+                      )}
                     </strong>
                   </td>
                 </tr>
