@@ -1,13 +1,13 @@
 {
-  "main.css": "/finance-analyzer/static/css/main.1e51f8b0.chunk.css",
-  "main.js": "/finance-analyzer/static/js/main.711dcc64.chunk.js",
-  "main.js.map": "/finance-analyzer/static/js/main.711dcc64.chunk.js.map",
-  "static/js/1.5e3d25b6.chunk.js": "/finance-analyzer/static/js/1.5e3d25b6.chunk.js",
-  "static/js/1.5e3d25b6.chunk.js.map": "/finance-analyzer/static/js/1.5e3d25b6.chunk.js.map",
+  "main.css": "/finance-analyzer/static/css/main.afe32bf1.chunk.css",
+  "main.js": "/finance-analyzer/static/js/main.b8ccb7eb.chunk.js",
+  "main.js.map": "/finance-analyzer/static/js/main.b8ccb7eb.chunk.js.map",
+  "static/js/1.6f650494.chunk.js": "/finance-analyzer/static/js/1.6f650494.chunk.js",
+  "static/js/1.6f650494.chunk.js.map": "/finance-analyzer/static/js/1.6f650494.chunk.js.map",
   "runtime~main.js": "/finance-analyzer/static/js/runtime~main.200e36b3.js",
   "runtime~main.js.map": "/finance-analyzer/static/js/runtime~main.200e36b3.js.map",
-  "static/css/main.1e51f8b0.chunk.css.map": "/finance-analyzer/static/css/main.1e51f8b0.chunk.css.map",
+  "static/css/main.afe32bf1.chunk.css.map": "/finance-analyzer/static/css/main.afe32bf1.chunk.css.map",
   "index.html": "/finance-analyzer/index.html",
-  "precache-manifest.4f92b884f95e9b5b16d46c564dac3283.js": "/finance-analyzer/precache-manifest.4f92b884f95e9b5b16d46c564dac3283.js",
+  "precache-manifest.a2475d44e34d25c8650d0ae25c39da8c.js": "/finance-analyzer/precache-manifest.a2475d44e34d25c8650d0ae25c39da8c.js",
   "service-worker.js": "/finance-analyzer/service-worker.js"
 }
