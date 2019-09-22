@@ -114,17 +114,9 @@ export default class Categorizer extends React.Component<{}, State> {
       }
     }
 
-    const timeRange =
-      this.state.spendings[0].bookedDate.getTime() -
-      this.state.spendings[
-        this.state.spendings.length - 1
-      ].bookedDate.getTime();
-    const dayRange = timeRange / 1000 / 60 / 60 / 24;
-    const monthRange = dayRange / 30;
-
     for (const category of Object.keys(aggregated)) {
       monthlyAvarage[category] = aggregated[category]
-        ? aggregated[category] / monthRange
+        ? aggregated[category] / months.length
         : 0;
     }
 
