@@ -19,6 +19,7 @@ table {
 
 td.amount {
   text-align: right;
+  font-family: 'Cascadia Code', monospace;
 }
 
 td.sum {
