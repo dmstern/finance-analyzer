@@ -2,6 +2,7 @@ import * as React from "react";
 import { FormEvent } from "react";
 import * as csv from "csvtojson";
 import Spending from "./Spending";
+import { Months } from "./Months";
 
 interface State {
   csvInput: string;
@@ -27,6 +28,11 @@ interface State {
 }
 
 export default class Categorizer extends React.Component<{}, State> {
+  parseMonth(date: string): React.ReactNode {
+    const [year, month] = date.split('-');
+    return `${Months[month]} / ${year}`;
+  }
+
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
@@ -180,7 +186,7 @@ export default class Categorizer extends React.Component<{}, State> {
                 <tr>
                   <th className="label">Category / Month</th>
                   {this.state.months.map((month, index) => (
-                    <th key={index}>{month}</th>
+                    <th key={index}>{this.parseMonth(month)}</th>
                   ))}
                   <th className="average">Average</th>
                 </tr>
