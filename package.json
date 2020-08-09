@@ -4,7 +4,7 @@
   "description": "",
   "keywords": [],
   "main": "src/index.tsx",
-  "homepage" : "https://dmstern.github.io/finance-analyzer",
+  "homepage": "https://dmstern.github.io/finance-analyzer",
   "dependencies": {
     "csvtojson": "2.0.10",
     "react": "16.8.4",
