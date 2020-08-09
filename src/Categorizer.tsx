@@ -145,107 +145,54 @@ export default class Categorizer extends React.Component<{}, State> {
   render = () => {
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <label htmlFor="csvInput">
-              <p>Hier den CSV-Inhalt der Ausgaben einfügen:</p>
-            </label>
-            <textarea
-              onChange={this.handleChange}
-              name="csvInput"
-              id="csvInput"
-              cols={100}
-              rows={10}
-              required
-            />
-          </div>
-          <div>
-            <label htmlFor="headline">Enthält Kopfzeile</label>
-            <input
-              type="checkbox"
-              name="headline"
-              id="headline"
-              checked={this.state.hasHeadline}
-              onChange={this.handleHeadlineChange}
-            />
-          </div>
-          <div>
-            <label htmlFor="delimiter">Trennzeichen: </label>
-            <input
-              id="delimiter"
-              value={this.state.delimiter}
-              onChange={this.handleDelimiterChange}
-              required
-            />
-          </div>
-          <div>
-            <button type="submit">Analysieren</button>
-          </div>
+        <form
+          onSubmit={this.handleSubmit}
+          className="pure-form pure-form-aligned"
+        >
+          <fieldset>
+            <div className="pure-control-group">
+              <label htmlFor="csvInput">
+                <p>Hier den CSV-Inhalt der Ausgaben einfügen:</p>
+              </label>
+              <textarea
+                onChange={this.handleChange}
+                name="csvInput"
+                id="csvInput"
+                cols={100}
+                rows={10}
+                required
+              />
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="headline" className="pure-checkbox">
+                <input
+                  type="checkbox"
+                  name="headline"
+                  id="headline"
+                  checked={this.state.hasHeadline}
+                  onChange={this.handleHeadlineChange}
+                />{" "}
+                Enthält Kopfzeile
+              </label>
+            </div>
+            <div className="pure-control-group">
+              <label htmlFor="delimiter">Trennzeichen: </label>
+              <input
+                id="delimiter"
+                type="text"
+                value={this.state.delimiter}
+                onChange={this.handleDelimiterChange}
+                required
+              />
+            </div>
+            <div className="pure-control-group">
+              <button type="submit" className="pure-button pure-button-primary">
+                Analysieren
+              </button>
+            </div>
+          </fieldset>
         </form>
-        {this.state.isCalculated && (
-          <div className="result">
-            <h3>Monatliche Ausgaben (€):</h3>
-            <table>
-              <thead>
-                <tr>
-                  <th className="label">Category / Month</th>
-                  {this.state.months.map((month, index) => (
-                    <th key={index}>{this.parseMonth(month)}</th>
-                  ))}
-                  <th className="average">Average</th>
-                </tr>
-              </thead>
-
-              <tbody>
-                {Object.entries(this.state.monthlySpendings).map(
-                  ([category, monthlySpendings]) => {
-                    const average = this.state.monthlyAverage[category];
-
-                    return (
-                      <tr key={category}>
-                        <th className="label">
-                          {Spending.categories[category].label}
-                        </th>
-                        {this.state.months.map((month) => (
-                          <td className="amount" key={`${category}-${month}`}>
-                            {monthlySpendings[month]
-                              ? this.amountify(monthlySpendings[month])
-                              : 0}
-                          </td>
-                        ))}
-                        <td className="amount average">
-                          {this.amountify(average)}
-                        </td>
-                      </tr>
-                    );
-                  }
-                )}
-
-                <tr key="sum">
-                  <td className="label">
-                    <strong>Gesamt</strong>
-                  </td>
-
-                  {Object.values(this.state.monthlySums).map((sum, index) => (
-                    <td className="amount sum" key={index}>
-                      {this.amountify(sum)}
-                    </td>
-                  ))}
-
-                  <td className="amount sum average">
-                    <strong>
-                      {this.amountify(
-                        Object.values(this.state.monthlyAverage).reduce(
-                          (a, b) => a + b
-                        )
-                      )}
-                    </strong>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        )}
+        {}
       </div>
     );
   };

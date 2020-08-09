@@ -5,8 +5,10 @@ import Categorizer from "./Categorizer";
 
 function App() {
   return (
-    <div className="App">
-      <Categorizer />
+    <div className="App pure-g">
+      <div className="pure-u-1-1">
+        <Categorizer />
+      </div>
     </div>
   );
 }
