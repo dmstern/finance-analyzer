@@ -156,6 +156,7 @@ export default class Categorizer extends React.Component<{}, State> {
               id="csvInput"
               cols={100}
               rows={10}
+              required
             />
           </div>
           <div>
@@ -174,6 +175,7 @@ export default class Categorizer extends React.Component<{}, State> {
               id="delimiter"
               value={this.state.delimiter}
               onChange={this.handleDelimiterChange}
+              required
             />
           </div>
           <div>
