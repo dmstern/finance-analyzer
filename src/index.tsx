@@ -1,7 +1,6 @@
 import * as React from "react";
 import { render } from "react-dom";
 
-import "./styles.css";
 import Categorizer from "./Categorizer";
 
 function App() {

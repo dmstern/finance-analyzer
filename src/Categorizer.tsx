@@ -29,7 +29,7 @@ interface State {
 
 export default class Categorizer extends React.Component<{}, State> {
   parseMonth(date: string): React.ReactNode {
-    const [year, month] = date.split('-');
+    const [year, month] = date.split("-");
     return `${Months[month]} / ${year}`;
   }
 
@@ -50,7 +50,7 @@ export default class Categorizer extends React.Component<{}, State> {
       monthlySums: {},
       months: [],
       hasHeadline: true,
-      isCalculated: false
+      isCalculated: false,
     };
   }
 
@@ -58,11 +58,13 @@ export default class Categorizer extends React.Component<{}, State> {
     csv
       .default({
         delimiter: this.state.delimiter,
-        noheader: !this.state.hasHeadline
+        noheader: !this.state.hasHeadline,
       })
       .fromString(this.state.csvInput)
-      .then(spendingRows => {
-        const spendings = spendingRows.map(spending => new Spending(spending));
+      .then((spendingRows) => {
+        const spendings = spendingRows.map(
+          (spending) => new Spending(spending)
+        );
         this.setState({ spendings });
         this.analayzeData();
       });
@@ -132,7 +134,7 @@ export default class Categorizer extends React.Component<{}, State> {
       monthlyAverage,
       monthlySpendings,
       months,
-      monthlySums
+      monthlySums,
     });
   }
 
@@ -144,7 +146,7 @@ export default class Categorizer extends React.Component<{}, State> {
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
-          <span>
+          <div>
             <label htmlFor="csvInput">
               <p>Hier den CSV-Inhalt der Ausgaben einfügen:</p>
             </label>
@@ -155,8 +157,8 @@ export default class Categorizer extends React.Component<{}, State> {
               cols={100}
               rows={10}
             />
-          </span>
-          <span>
+          </div>
+          <div>
             <label htmlFor="headline">Enthält Kopfzeile</label>
             <input
               type="checkbox"
@@ -165,18 +167,18 @@ export default class Categorizer extends React.Component<{}, State> {
               checked={this.state.hasHeadline}
               onChange={this.handleHeadlineChange}
             />
-          </span>
-          <span>
+          </div>
+          <div>
             <label htmlFor="delimiter">Trennzeichen: </label>
             <input
               id="delimiter"
               value={this.state.delimiter}
               onChange={this.handleDelimiterChange}
             />
-          </span>
-          <span>
+          </div>
+          <div>
             <button type="submit">Analysieren</button>
-          </span>
+          </div>
         </form>
         {this.state.isCalculated && (
           <div className="result">
@@ -202,7 +204,7 @@ export default class Categorizer extends React.Component<{}, State> {
                         <th className="label">
                           {Spending.categories[category].label}
                         </th>
-                        {this.state.months.map(month => (
+                        {this.state.months.map((month) => (
                           <td className="amount" key={`${category}-${month}`}>
                             {monthlySpendings[month]
                               ? this.amountify(monthlySpendings[month])
